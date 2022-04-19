@@ -21,6 +21,13 @@ public class FlyingEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(myPath.desiredVelocity.x >= 0.01f)
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        }else if (myPath.desiredVelocity.x <= -0.01f)
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
+        }
         chasePlayer1();
     }
 
@@ -39,7 +46,7 @@ public class FlyingEnemy : MonoBehaviour
     void chasePlayer1()
     {
         //alternativa 2 overlapCircle
-        Collider2D colliding = Physics2D.OverlapCircle(transform.position, 6f, LayerMask.GetMask("Player"));
+        Collider2D colliding = Physics2D.OverlapCircle(transform.position, 8f, LayerMask.GetMask("Player"));
 
         if(colliding != null)
         {
